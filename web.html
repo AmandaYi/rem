@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" viewport-fit=cover content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<style>
+	div {
+		font-size: 8.9rem;
+	}
+
+	button {
+		width: 90%;
+		margin: 1rem auto 0;
+		height: 4.5rem;
+		line-height: 4.5rem;
+		text-align: center;
+		background: #000;
+		color: #fff;
+		font-size: 1.6rem;
+		display: block;
+	}
+</style>
+
+<body>
+	<button>登录</button>
+	<!-- <div>祝你好运</div> -->
+	<script>
+		// 自执行函数
+		(function (doc, win) {
+			var html = doc.getElementsByTagName("html")[0],
+				// orientationchange->手机屏幕转屏事件
+				// resize->页面大小改变事件(一边pc端有用)
+				reEvt = "orientationchange" in win ? "orientationchange" : "resize",
+				reFontSize = function () {
+					var clientW = doc.documentElement.clientWidth || doc.body.clientWidth;
+					if (!clientW) {
+						return;
+					}
+					html.style.fontSize = 10 * (clientW / 320) + "px";
+				}
+				// 监听屏幕事件,如果WEB屏幕进行了旋转或者PC进行了页面大小拖放的话,执行函数体,设置根节点,html的fontSize的值
+			win.addEventListener(reEvt, reFontSize);
+			// DOMContentLoaded->dom加载完就执行,onload要dom/css/js都加载完才执行
+			doc.addEventListener("DOMContentLoaded", reFontSize);
+		})(document, window);
+	</script>
+</body>
+
+</html>
